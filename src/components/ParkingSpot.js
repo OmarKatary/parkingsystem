@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View,Text,TouchableHighlight } from 'react-native';
+import { StyleSheet, View,Text,TouchableOpacity } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
@@ -19,7 +19,7 @@ class ParkingSpot extends Component{
     }
     render(){
         return(
-            <TouchableHighlight
+            <TouchableOpacity
             disabled={this.props.pendingSpotExists||this.props.isOccupied}
             style =  { [this.state.isPending? styles.pendingParkingSpot:(this.props.isOccupied? styles.occupiedParkingSpot : styles.emptyParkingSpot), 
                         this.props.isParkingSpotHorizontal? styles.horizontalParkingSpot: styles.verticalParkingSpot]}
@@ -32,7 +32,7 @@ class ParkingSpot extends Component{
                                     color={"#1a1a1a"}
                                     />:null}
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
             
         )
     }
