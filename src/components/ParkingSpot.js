@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { StyleSheet, View,TouchableHighlight } from 'react-native';
+import { StyleSheet, View,Text,TouchableHighlight } from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
 class ParkingSpot extends Component{ 
@@ -23,7 +24,13 @@ class ParkingSpot extends Component{
             style =  { [this.state.isPending? styles.pendingParkingSpot:(this.props.isOccupied? styles.occupiedParkingSpot : styles.emptyParkingSpot), 
                         this.props.isParkingSpotHorizontal? styles.horizontalParkingSpot: styles.verticalParkingSpot]}
             onPress={() => this.chooseParkingSpot(this.state.isPending)}>
-                <View> 
+                <View style={this.props.isParkingSpotHorizontal? styles.horizontalIconView: styles.verticalIconView}> 
+                    {this.props.isOccupied?
+                    <FontAwesome5   style={this.props.isParkingSpotHorizontal? styles.horizontalIcon: styles.verticalIcon}
+                                    name={"car-side"} 
+                                    size={40}
+                                    color={"#1a1a1a"}
+                                    />:null}
                 </View>
             </TouchableHighlight>
             
@@ -41,19 +48,37 @@ const styles = StyleSheet.create({
         height: 100
     },
     occupiedParkingSpot : {
-        backgroundColor: 'red',
+        backgroundColor: '#b30000',
         borderWidth: 1,
         borderColor: "white",
+        borderRadius: 8
     },
     emptyParkingSpot: {
-        backgroundColor: 'green',
+        backgroundColor: '#009933',
         borderWidth: 1,
         borderColor: "white",
+        borderRadius: 8
     },
     pendingParkingSpot: {
         backgroundColor: 'yellow',
         borderWidth: 1,
         borderColor: "white",
+        borderRadius: 8
+    },
+    verticalIcon:{
+        transform: [ {rotate: '90deg'}]
+    },
+    horizontalIcon:{
+        transform: [{rotate: '0deg'}]
+    },
+    verticalIconView: {
+        flex:1,
+        justifyContent: 'center'
+    },
+    horizontalIconView: {
+        flex:1,
+        flexDirection:'row',
+        justifyContent: 'center'
     }
   })
 

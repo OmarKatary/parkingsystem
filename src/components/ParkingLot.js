@@ -10,7 +10,7 @@ class ParkingLot extends Component{
                 [   {parkingSectionID: 1,
                     isParkingSectionHorizontal: false,
                     isParkingSpotHorizontal: false,
-                    isDoubleSectioned: false,
+                    isDoubleSectioned: true,
                     sectionColumn: 1,
                     sectionRow: 1,
                     },
@@ -29,18 +29,18 @@ class ParkingLot extends Component{
                     sectionRow: 1,
                     },
                     {parkingSectionID: 4,
-                    isParkingSectionHorizontal: true,
+                    isParkingSectionHorizontal: false,
                     isParkingSpotHorizontal: false,
                     isDoubleSectioned: true,
-                    sectionColumn: 3,
-                    sectionRow: 1,
+                    sectionColumn: 1,
+                    sectionRow: 2,
                     }
                 ]
     }
     setPendingSpotExists = (value) => {
         this.setState({pendingSpotExists:value})
     }
-    
+
     sectionGenerator = () => {
         parkingColumns = []
         sectionViewList = []

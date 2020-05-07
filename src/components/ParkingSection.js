@@ -5,37 +5,37 @@ import ParkingSpot from './ParkingSpot'
 class ParkingSection extends Component{
     state = {
                 parkingSpots:
-                [   {parkingSpotID: 1,
+                [   {parkingSpotIndex: 1,
                     isOccupied: false,
                     isPending:false,
                     isParkingSpotHorizontal: true,
                     subSectionIndex: 1
                     },
-                    {parkingSpotID: 2,
+                    {parkingSpotIndex: 2,
                     isOccupied: true,
                     isPending:false,
                     isParkingSpotHorizontal: true,
                     subSectionIndex: 2
                     },
-                    {parkingSpotID: 3,
+                    {parkingSpotIndex: 3,
                     isOccupied: false,
                     isPending:false,
                     isParkingSpotHorizontal: true,
                     subSectionIndex: 1
                     },
-                    {parkingSpotID: 4,
+                    {parkingSpotIndex: 4,
                     isOccupied: true,
                     isPending:false,
                     isParkingSpotHorizontal: true,
                     subSectionIndex: 1
                     },
-                    {parkingSpotID: 5,
+                    {parkingSpotIndex: 5,
                     isOccupied: false,
                     isPending:false,
                     isParkingSpotHorizontal: true,
                     subSectionIndex: 2
                     },
-                    {parkingSpotID: 6,
+                    {parkingSpotIndex: 6,
                     isOccupied: false,
                     isPending:false,
                     isParkingSpotHorizontal: true,
@@ -52,8 +52,8 @@ class ParkingSection extends Component{
                 {this.state.parkingSpots.map( spot => {
                     if(spot.subSectionIndex == 1){
                     return(
-                    <ParkingSpot    key={spot.parkingSpotID} 
-                                    id={spot.parkingSpotID} 
+                    <ParkingSpot    key={spot.parkingSpotIndex} 
+                                    id={spot.parkingSpotIndex} 
                                     isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
                                     isOccupied={spot.isOccupied} isPending={spot.isPending}
                                     pendingSpotExists={this.props.pendingSpotExists}
@@ -68,8 +68,8 @@ class ParkingSection extends Component{
             {this.state.parkingSpots.map( spot => {
                 if(spot.subSectionIndex == 2){
                 return(
-                <ParkingSpot    key={spot.parkingSpotID} 
-                                id={spot.parkingSpotID} 
+                <ParkingSpot    key={spot.parkingSpotIndex} 
+                                id={spot.parkingSpotIndex} 
                                 isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
                                 isOccupied={spot.isOccupied}
                                 pendingSpotExists={this.props.pendingSpotExists}
@@ -85,8 +85,8 @@ class ParkingSection extends Component{
         <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
             {this.state.parkingSpots.map( spot => {
                 return(
-                <ParkingSpot    key={spot.parkingSpotID} 
-                                id={spot.parkingSpotID} 
+                <ParkingSpot    key={spot.parkingSpotIndex} 
+                                id={spot.parkingSpotIndex} 
                                 isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
                                 isOccupied={spot.isOccupied}
                                 pendingSpotExists={this.props.pendingSpotExists}
