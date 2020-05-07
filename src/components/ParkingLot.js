@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View,ScrollView,Text} from 'react-native';
 import ParkingSection from './ParkingSection'
+import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
 
 class ParkingLot extends Component{
     state = {   gridRows: 2,
@@ -30,7 +31,7 @@ class ParkingLot extends Component{
                     },
                     {parkingSectionID: 4,
                     isParkingSectionHorizontal: false,
-                    isParkingSpotHorizontal: false,
+                    isParkingSpotHorizontal: true,
                     isDoubleSectioned: true,
                     sectionColumn: 1,
                     sectionRow: 2,
@@ -65,12 +66,23 @@ class ParkingLot extends Component{
     render(){
     columnsList = this.sectionGenerator()
     return(
-        <ScrollView horizontal= {true} maximumZoomScale={5} minimumZoomScale={0.5} scrollEnabled={true}>
-            <View style={styles.parkingLot}>
-                    {columnsList.map((column)=>{ return column})}
-
-            </View>
-        </ScrollView>
+        <ReactNativeZoomableView
+            maxZoom={1.5}
+            minZoom={0.5}
+            zoomStep={0.2}
+            initialZoom={1}
+            bindToBorders={false}
+            style={{flex:1}}>
+            {/* <ScrollView>
+                <ScrollView horizontal= {true}> */}
+                    {/* <View style={{margin:100, justifyContent:'center'}}> */}
+                    <View style={styles.parkingLot}>
+                            {columnsList.map((column)=>{ return column})}
+                    </View>
+                    {/* </View> */}
+                {/* </ScrollView>
+            </ScrollView> */}
+        </ReactNativeZoomableView>
     )
     }
 }
@@ -78,12 +90,12 @@ class ParkingLot extends Component{
 const styles = StyleSheet.create({
 
     parkingSection:{
-        flex:1,
-        margin:20
+        // flex:1
     },
     parkingLot : {
-       flex:1,
-       flexDirection: 'row'
+        flex:1,
+        flexDirection: 'row',
+        // justifyContent:'center'
     }
   })
 

@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     parkingVerticalSection:{
         flex:1,
         flexDirection: 'row',
+        margin:20
     },
     parkingHorizontalSubSection : {
         flexDirection : 'row'
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
     parkingHorizontalSection:{
         flex:1,
         flexDirection: 'column',
+        margin:20
     }
   })
 
