@@ -69,7 +69,7 @@ class ParkingLot extends Component{
         <ReactNativeZoomableView
             maxZoom={1.5}
             minZoom={0.5}
-            zoomStep={0.2}
+            zoomStep={0}
             initialZoom={1}
             bindToBorders={false}
             style={{flex:1}}>

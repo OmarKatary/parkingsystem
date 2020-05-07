@@ -7,7 +7,7 @@ class ParkingPage extends Component{
     render(){
         return(
             <View style={styles.parkingView}>
-                <Header title={"Parking Carrefour"}/>
+                <Header title={"Parking Carrefour"} backButton={true} backButtonHandler={this.props.backButtonHandler}/>
                 <View style={{flex:1}}>
                     <ParkingLot/>
                 </View>

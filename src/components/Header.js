@@ -5,9 +5,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 const Header = (props)=>{
     return(
         <View style={styles.headerView}>
-            <TouchableOpacity style={{flex:1}}>
+            {props.backButton?
+            <TouchableOpacity   onPress={ e => { props.backButtonHandler(false)}}
+                                style={{flex:1}}>
                 <Text style={{fontSize:12, padding:8}}> {"BACK"}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>:<View style={{flex:1}}></View>}
             <Text style={styles.headerText}>{" "+props.title}</Text>
             <View style={{flex:1}}></View>
         </View>
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         height:'10%',
         width:'100%',
-        backgroundColor:'#f2f2f2',
+        backgroundColor:'#ffc34d',
         paddingTop: 0,
         justifyContent:"space-between",
         alignItems:"center",
@@ -29,13 +31,14 @@ const styles = StyleSheet.create({
         // shadowOffset:{width:20, height:50},
         // shadowOpacity:0.5,
         // shadowRadius: 5,
-        elevation:2,
-        position:'relative'
+        // elevation:2,
+        // position:'relative'
 
     },
     headerText:{
         fontSize:25,
         flex:3,
+        textAlign:'center'
     },
     iconStyle:{
 

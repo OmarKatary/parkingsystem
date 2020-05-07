@@ -14,7 +14,7 @@ import ParkingLot from './src/components/ParkingLot'
 const App= () => {
   return (
     // <ParkingSection/>
-    <ParkingPage/>
+    <MainPage/>
   );
 };
 

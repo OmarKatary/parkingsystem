@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         width: '80%',
         height: 50,
         alignSelf: 'center',
-        marginTop: 30
+        marginTop: 90
     }
   })
   
