@@ -4,7 +4,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
  
 const Header = (props)=>{
     return(
-        <View style={styles.headerView}>
+        <View elevation={5} style={styles.headerView}>
             {props.backButton?
             <TouchableOpacity   onPress={ e => { props.backButtonHandler(false)}}
                                 style={{flex:1}}>
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
         // shadowOffset:{width:20, height:50},
         // shadowOpacity:0.5,
         // shadowRadius: 5,
-        // elevation:2,
-        // position:'relative'
+        elevation:5,
+        position:'relative'
 
     },
     headerText:{

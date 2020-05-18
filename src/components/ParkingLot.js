@@ -4,38 +4,39 @@ import ParkingSection from './ParkingSection'
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
 
 class ParkingLot extends Component{
-    state = {   gridRows: 2,
-                gridColumns:3,
+    state = {   gridRows: 1,
+                gridColumns:2,
                 pendingSpotExists:false,
                 parkingSections:
-                [   {parkingSectionID: 1,
-                    isParkingSectionHorizontal: false,
-                    isParkingSpotHorizontal: false,
-                    isDoubleSectioned: true,
-                    sectionColumn: 1,
-                    sectionRow: 1,
-                    },
-                    {parkingSectionID: 2,
-                    isParkingSectionHorizontal: false,
-                    isParkingSpotHorizontal: false,
-                    isDoubleSectioned: true,
-                    sectionColumn: 2,
-                    sectionRow: 2,
-                    },
-                    {parkingSectionID: 3,
-                    isParkingSectionHorizontal: true,
-                    isParkingSpotHorizontal: true,
-                    isDoubleSectioned: true,
-                    sectionColumn: 2,
-                    sectionRow: 1,
-                    },
-                    {parkingSectionID: 4,
+                [   {parkingSectionID: 2,
                     isParkingSectionHorizontal: false,
                     isParkingSpotHorizontal: true,
                     isDoubleSectioned: true,
                     sectionColumn: 1,
-                    sectionRow: 2,
+                    sectionRow: 1,
+                    },
+                    {parkingSectionID: 1,
+                    isParkingSectionHorizontal: false,
+                    isParkingSpotHorizontal: true,
+                    isDoubleSectioned: true,
+                    sectionColumn: 2,
+                    sectionRow: 1,
                     }
+                    // ,
+                    // {parkingSectionID: 3,
+                    // isParkingSectionHorizontal: true,
+                    // isParkingSpotHorizontal: true,
+                    // isDoubleSectioned: true,
+                    // sectionColumn: 2,
+                    // sectionRow: 1,
+                    // },
+                    // {parkingSectionID: 4,
+                    // isParkingSectionHorizontal: false,
+                    // isParkingSpotHorizontal: true,
+                    // isDoubleSectioned: true,
+                    // sectionColumn: 1,
+                    // sectionRow: 2,
+                    // }
                 ]
     }
     setPendingSpotExists = (value) => {
@@ -53,7 +54,8 @@ class ParkingLot extends Component{
                                                             isParkingSectionHorizontal={section.isParkingSectionHorizontal} 
                                                             isDoubleSectioned={section.isDoubleSectioned}
                                                             pendingSpotExists={this.state.pendingSpotExists}
-                                                            setPendingSpotExists={this.setPendingSpotExists}/>)
+                                                            setPendingSpotExists={this.setPendingSpotExists}
+                                                            setModalVisibility={this.props.setModalVisibility}/>)
                 }
             })
          
@@ -70,7 +72,7 @@ class ParkingLot extends Component{
             maxZoom={1.5}
             minZoom={0.5}
             zoomStep={0}
-            initialZoom={1}
+            initialZoom={0.8}
             bindToBorders={false}
             style={{flex:1}}>
             {/* <ScrollView>
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     parkingLot : {
         flex:1,
         flexDirection: 'row',
-        // justifyContent:'center'
+        justifyContent:'center'
     }
   })
 

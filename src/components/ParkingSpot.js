@@ -23,12 +23,13 @@ class ParkingSpot extends Component{
             disabled={this.props.pendingSpotExists||this.props.isOccupied}
             style =  { [this.state.isPending? styles.pendingParkingSpot:(this.props.isOccupied? styles.occupiedParkingSpot : styles.emptyParkingSpot), 
                         this.props.isParkingSpotHorizontal? styles.horizontalParkingSpot: styles.verticalParkingSpot]}
-            onPress={() => this.chooseParkingSpot(this.state.isPending)}>
+            onPress={() => {this.chooseParkingSpot()
+                            this.props.setModalVisibility(true)}}>
                 <View style={this.props.isParkingSpotHorizontal? styles.horizontalIconView: styles.verticalIconView}> 
                     {this.props.isOccupied?
                     <FontAwesome5   style={this.props.isParkingSpotHorizontal? styles.horizontalIcon: styles.verticalIcon}
                                     name={"car-side"} 
-                                    size={40}
+                                    size={50}
                                     color={"#1a1a1a"}
                                     />:null}
                 </View>
@@ -40,30 +41,33 @@ class ParkingSpot extends Component{
 
 const styles = StyleSheet.create({
     horizontalParkingSpot :{
-        width: 100,
-        height: 50
+        width: 120,
+        height: 60
     },
     verticalParkingSpot :{
-        width: 50,
-        height: 100
+        width: 60,
+        height: 120,
     },
     occupiedParkingSpot : {
         backgroundColor: '#b30000',
         borderWidth: 1,
         borderColor: "white",
-        borderRadius: 8
+        borderRadius: 8,
+        elevation:2
     },
     emptyParkingSpot: {
         backgroundColor: '#009933',
         borderWidth: 1,
         borderColor: "white",
-        borderRadius: 8
+        borderRadius: 8,
+        elevation:2
     },
     pendingParkingSpot: {
         backgroundColor: 'yellow',
         borderWidth: 1,
         borderColor: "white",
-        borderRadius: 8
+        borderRadius: 8,
+        elevation:2
     },
     verticalIcon:{
         transform: [ {rotate: '90deg'}]

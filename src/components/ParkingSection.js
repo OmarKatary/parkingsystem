@@ -40,6 +40,30 @@ class ParkingSection extends Component{
                     isPending:false,
                     isParkingSpotHorizontal: true,
                     subSectionIndex: 2
+                    },
+                    {parkingSpotIndex: 7,
+                    isOccupied: false,
+                    isPending:false,
+                    isParkingSpotHorizontal: true,
+                    subSectionIndex: 1
+                    },
+                    {parkingSpotIndex: 8,
+                    isOccupied: true,
+                    isPending:false,
+                    isParkingSpotHorizontal: true,
+                    subSectionIndex: 1
+                    },
+                    {parkingSpotIndex: 9,
+                    isOccupied: false,
+                    isPending:false,
+                    isParkingSpotHorizontal: true,
+                    subSectionIndex: 2
+                    },
+                    {parkingSpotIndex: 10,
+                    isOccupied: false,
+                    isPending:false,
+                    isParkingSpotHorizontal: true,
+                    subSectionIndex: 2
                     }
                 ]
             }
@@ -57,7 +81,8 @@ class ParkingSection extends Component{
                                     isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
                                     isOccupied={spot.isOccupied} isPending={spot.isPending}
                                     pendingSpotExists={this.props.pendingSpotExists}
-                                    setPendingSpotExists={this.props.setPendingSpotExists}/>
+                                    setPendingSpotExists={this.props.setPendingSpotExists}
+                                    setModalVisibility={this.props.setModalVisibility}/>
                     )
                     }}
                     )
@@ -73,7 +98,8 @@ class ParkingSection extends Component{
                                 isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
                                 isOccupied={spot.isOccupied}
                                 pendingSpotExists={this.props.pendingSpotExists}
-                                setPendingSpotExists={this.props.setPendingSpotExists}/>
+                                setPendingSpotExists={this.props.setPendingSpotExists}
+                                setModalVisibility={this.props.setModalVisibility}/>
                 )
                 }}
                 )
@@ -90,7 +116,8 @@ class ParkingSection extends Component{
                                 isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
                                 isOccupied={spot.isOccupied}
                                 pendingSpotExists={this.props.pendingSpotExists}
-                                setPendingSpotExists={this.props.setPendingSpotExists}/>
+                                setPendingSpotExists={this.props.setPendingSpotExists}
+                                setModalVisibility={this.props.setModalVisibility}/>
                 )
                 }
                 )
