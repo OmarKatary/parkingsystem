@@ -16,8 +16,8 @@ class MainPage extends Component{
     this.setState({showParking:value})
   }
 
-  getParkingId = () =>{
-    return 2
+  getParkingId = (id) =>{
+    return id
   }
     render(){
         return(
@@ -27,22 +27,27 @@ class MainPage extends Component{
             <Header title={'Find.Navigate.Park'} backButton={false} backButtonHandler={this.backButtonHandler}/>
             {/* Map view is to be called with selected parking coordibated */}
             <MapView
-            style = {styles.map}
-            initialRegion={{
-              latitude: 31.1683,
-              longitude: 29.9316,
-              latitudeDelta: 0.00922,
-              longitudeDelta: 0.00421,
-            }}>
-            <Marker
-              coordinate={{
+              style = {styles.map}
+              initialRegion={{
                 latitude: 31.1683,
-                longitude: 29.932}}
-                title="Carrefour's Parking"
-                onPress={ e =>{ let parkingId = this.getParkingId()
+                longitude: 29.9316,
+                latitudeDelta: 0.00922,
+                longitudeDelta: 0.00421,
+              }}>
+            {this.props.parkingsMapInfo.map(parking =>{
+              return(
+                <Marker
+                coordinate={{
+                latitude: parking.latitude,
+                longitude: parking.longitude}}
+                title= {parking.name}
+                onPress={ e =>{ let parkingId = this.getParkingId(parking.id)
                                 this.props.getSelectedParkingActionCreator(parkingId)
                                 this.setState({showParking:true})}}
             />
+              )
+            })}
+            
             </MapView>
             <SearchBar style = {styles.searchBar}/>
           </View>
@@ -64,6 +69,7 @@ const styles = StyleSheet.create({
 })
 // selectedParkingActionCreator
 const mapStateToProps = (state) =>{
-  return {selectedParking: state.selectedParking}
+  return {selectedParking: state.selectedParking,
+          parkingsMapInfo : state.parkingsMapInfo}
 }
 export default connect(mapStateToProps, actions)(MainPage)
