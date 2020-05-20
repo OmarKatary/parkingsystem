@@ -1,79 +1,16 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 import { StyleSheet, View } from 'react-native';
 import ParkingSpot from './ParkingSpot'
 
-class ParkingSection extends Component{
-    state = {
-                parkingSpots:
-                [   {parkingSpotIndex: 1,
-                    isOccupied: false,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 1
-                    },
-                    {parkingSpotIndex: 2,
-                    isOccupied: true,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 2
-                    },
-                    {parkingSpotIndex: 3,
-                    isOccupied: false,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 1
-                    },
-                    {parkingSpotIndex: 4,
-                    isOccupied: true,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 1
-                    },
-                    {parkingSpotIndex: 5,
-                    isOccupied: false,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 2
-                    },
-                    {parkingSpotIndex: 6,
-                    isOccupied: false,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 2
-                    },
-                    {parkingSpotIndex: 7,
-                    isOccupied: false,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 1
-                    },
-                    {parkingSpotIndex: 8,
-                    isOccupied: true,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 1
-                    },
-                    {parkingSpotIndex: 9,
-                    isOccupied: false,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 2
-                    },
-                    {parkingSpotIndex: 10,
-                    isOccupied: false,
-                    isPending:false,
-                    isParkingSpotHorizontal: true,
-                    subSectionIndex: 2
-                    }
-                ]
-            }
-            
+class ParkingSection extends Component{       
+    
     render(){
     return(
         this.props.isDoubleSectioned?
         <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSection:styles.parkingVerticalSection}>
             <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
-                {this.state.parkingSpots.map( spot => {
+                {this.props.parkingSpots.map( spot => {
                     if(spot.subSectionIndex == 1){
                     return(
                     <ParkingSpot    key={spot.parkingSpotIndex} 
@@ -90,7 +27,7 @@ class ParkingSection extends Component{
             </View> 
 
             <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
-            {this.state.parkingSpots.map( spot => {
+            {this.props.parkingSpots.map( spot => {
                 if(spot.subSectionIndex == 2){
                 return(
                 <ParkingSpot    key={spot.parkingSpotIndex} 
@@ -109,7 +46,7 @@ class ParkingSection extends Component{
         :
         <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSection:styles.parkingVerticalSection}>
         <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
-            {this.state.parkingSpots.map( spot => {
+            {this.props.parkingSpots.map( spot => {
                 return(
                 <ParkingSpot    key={spot.parkingSpotIndex} 
                                 id={spot.parkingSpotIndex} 
@@ -146,5 +83,6 @@ const styles = StyleSheet.create({
         margin:20
     }
   })
+
 
 export default ParkingSection

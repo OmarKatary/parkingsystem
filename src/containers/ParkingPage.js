@@ -6,16 +6,15 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
 class ParkingPage extends Component{
-    state = {
-        isModalVisible: false
-    }
+    state = {isModalVisible: false}
+    
     setModalVisibility = (value) =>{
         this.setState({isModalVisible: value})
     }
     render(){
         return(
             <View style={styles.parkingView}>
-                <Modal visible={this.state.isModalVisible} animationType='slide' transparent={true} > 
+                {/* <Modal visible={this.state.isModalVisible} animationType='slide' transparent={true} > 
                     <View style={styles.modalBlurBackground}>
                         <View style={styles.modalContainer}>
                             <FontAwesome5   name={"times"} 
@@ -35,10 +34,10 @@ class ParkingPage extends Component{
                             </View>
                         </View>
                     </View>
-                </Modal>
-                <Header title={"Parking Carrefour"} backButton={true} backButtonHandler={this.props.backButtonHandler}/>
+                </Modal> */}
+                <Header title={this.props.parking.name} backButton={true} backButtonHandler={this.props.backButtonHandler}/>
                 <View style={{flex:1}}>
-                    <ParkingLot setModalVisibility={this.setModalVisibility} />
+                    <ParkingLot setModalVisibility={this.setModalVisibility} parking={this.props.parking}/>
                 </View>
             </View>
             

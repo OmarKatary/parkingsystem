@@ -4,41 +4,8 @@ import ParkingSection from './ParkingSection'
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
 
 class ParkingLot extends Component{
-    state = {   gridRows: 1,
-                gridColumns:2,
-                pendingSpotExists:false,
-                parkingSections:
-                [   {parkingSectionID: 2,
-                    isParkingSectionHorizontal: false,
-                    isParkingSpotHorizontal: true,
-                    isDoubleSectioned: true,
-                    sectionColumn: 1,
-                    sectionRow: 1,
-                    },
-                    {parkingSectionID: 1,
-                    isParkingSectionHorizontal: false,
-                    isParkingSpotHorizontal: true,
-                    isDoubleSectioned: true,
-                    sectionColumn: 2,
-                    sectionRow: 1,
-                    }
-                    // ,
-                    // {parkingSectionID: 3,
-                    // isParkingSectionHorizontal: true,
-                    // isParkingSpotHorizontal: true,
-                    // isDoubleSectioned: true,
-                    // sectionColumn: 2,
-                    // sectionRow: 1,
-                    // },
-                    // {parkingSectionID: 4,
-                    // isParkingSectionHorizontal: false,
-                    // isParkingSpotHorizontal: true,
-                    // isDoubleSectioned: true,
-                    // sectionColumn: 1,
-                    // sectionRow: 2,
-                    // }
-                ]
-    }
+    state = {  pendingSpotExists:false}
+    
     setPendingSpotExists = (value) => {
         this.setState({pendingSpotExists:value})
     }
@@ -46,10 +13,11 @@ class ParkingLot extends Component{
     sectionGenerator = () => {
         parkingColumns = []
         sectionViewList = []
-        for(i=1; i<=this.state.gridColumns; i++){
-            this.state.parkingSections.map(section =>{
+        for(i=1; i<=this.props.parking.gridColumns; i++){
+            this.props.parking.parkingSections.map(section =>{
                 if(section.sectionColumn == i){
-                    sectionViewList.push(<ParkingSection    key={section.parkingSectionID} 
+                    sectionViewList.push(<ParkingSection    parkingSpots = {this.props.parking.parkingSpots}
+                                                            key={section.parkingSectionID} 
                                                             isParkingSpotHorizontal={section.isParkingSpotHorizontal} 
                                                             isParkingSectionHorizontal={section.isParkingSectionHorizontal} 
                                                             isDoubleSectioned={section.isDoubleSectioned}
