@@ -8,8 +8,8 @@ class ParkingLot extends Component{
                 gridColumns:2,
                 pendingSpotExists:false,
                 parkingSections:
-                [   {parkingSectionID: 2,
-                    isParkingSectionHorizontal: false,
+                [   {parkingSectionID: 4,
+                    isParkingSectionHorizontal: true,
                     isParkingSpotHorizontal: true,
                     isDoubleSectioned: true,
                     sectionColumn: 1,
