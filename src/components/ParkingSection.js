@@ -16,10 +16,12 @@ class ParkingSection extends Component{
                     <ParkingSpot    key={spot.parkingSpotIndex} 
                                     id={spot.parkingSpotIndex} 
                                     isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
-                                    isOccupied={spot.isOccupied} isPending={spot.isPending}
+                                    isOccupied={spot.isOccupied}
                                     pendingSpotExists={this.props.pendingSpotExists}
                                     setPendingSpotExists={this.props.setPendingSpotExists}
-                                    setModalVisibility={this.props.setModalVisibility}/>
+                                    setModalVisibility={this.props.setModalVisibility}
+                                    parkingId = {this.props.parkingId}
+                                    sectionId = {this.props.sectionId}/>
                     )
                     }}
                     )
@@ -36,7 +38,9 @@ class ParkingSection extends Component{
                                 isOccupied={spot.isOccupied}
                                 pendingSpotExists={this.props.pendingSpotExists}
                                 setPendingSpotExists={this.props.setPendingSpotExists}
-                                setModalVisibility={this.props.setModalVisibility}/>
+                                setModalVisibility={this.props.setModalVisibility}
+                                parkingId = {this.props.parkingId}
+                                sectionId = {this.props.sectionId}/>
                 )
                 }}
                 )
@@ -54,7 +58,9 @@ class ParkingSection extends Component{
                                 isOccupied={spot.isOccupied}
                                 pendingSpotExists={this.props.pendingSpotExists}
                                 setPendingSpotExists={this.props.setPendingSpotExists}
-                                setModalVisibility={this.props.setModalVisibility}/>
+                                setModalVisibility={this.props.setModalVisibility}
+                                parkingId = {this.props.parkingId}
+                                sectionId = {this.props.sectionId}/>
                 )
                 }
                 )

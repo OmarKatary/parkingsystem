@@ -1,35 +1,40 @@
 import React, {Component} from 'react';
 import { StyleSheet, View,Text,TouchableOpacity } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import {connect} from 'react-redux'
+import * as actions from '../actions'
 
 
 class ParkingSpot extends Component{ 
     state = {
-        isDisabled: false,
-        isPending:false
+        // isDisabled: false,
+        setPending:false
     }
-    chooseParkingSpot = () =>{
+    chooseParkingSpot = (parkingId, sectionId, spotId) =>{
         if(!this.props.pendingSpotExists){
             this.props.setPendingSpotExists(true)
-            this.setState({isPending:true})
-            setTimeout(()=>{ this.setState({isPending:false})
-                             this.props.setPendingSpotExists(false)}, 10000)
+            this.setState({setPending:true})
+            this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: true})
+            setTimeout(()=>{ this.setState({setPending:false})
+                             this.props.setPendingSpotExists(false)
+                             this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: false})
+                            }, 5000)
             
         }
     }
     render(){
         return(
             <TouchableOpacity
-            disabled={this.props.pendingSpotExists||this.props.isOccupied}
-            style =  { [this.state.isPending? styles.pendingParkingSpot:(this.props.isOccupied? styles.occupiedParkingSpot : styles.emptyParkingSpot), 
-                        this.props.isParkingSpotHorizontal? styles.horizontalParkingSpot: styles.verticalParkingSpot]}
-            onPress={() => {this.chooseParkingSpot()
+                disabled={this.props.isOccupied}
+                style =  { [this.state.setPending? styles.pendingParkingSpot:(this.props.isOccupied? styles.occupiedParkingSpot : styles.emptyParkingSpot), 
+                            this.props.isParkingSpotHorizontal? styles.horizontalParkingSpot: styles.verticalParkingSpot]}
+                onPress={() => {this.chooseParkingSpot(this.props.parkingId, this.props.sectionId, this.props.id)
                             this.props.setModalVisibility(true)}}>
                 <View style={this.props.isParkingSpotHorizontal? styles.horizontalIconView: styles.verticalIconView}> 
                     {this.props.isOccupied?
                     <FontAwesome5   style={this.props.isParkingSpotHorizontal? styles.horizontalIcon: styles.verticalIcon}
                                     name={"car-side"} 
-                                    size={50}
+                                    size={45}
                                     color={"#1a1a1a"}
                                     />:null}
                 </View>
@@ -86,4 +91,4 @@ const styles = StyleSheet.create({
     }
   })
 
-export default ParkingSpot
+export default connect(null, actions)(ParkingSpot)
