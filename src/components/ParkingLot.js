@@ -44,7 +44,7 @@ class ParkingLot extends Component{
             zoomStep={0}
             initialZoom={0.8}
             bindToBorders={false}
-            style={{flex:1}}>
+>
             {/* <ScrollView>
                 <ScrollView horizontal= {true}> */}
                     {/* <View style={{margin:100, justifyContent:'center'}}> */}

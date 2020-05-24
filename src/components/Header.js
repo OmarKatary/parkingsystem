@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     headerView:{
         // flex:1,
         flexDirection:'row',
-        height:'10%',
+        height:80,
         width:'100%',
         backgroundColor:'#ffc34d',
         paddingTop: 0,

@@ -3,7 +3,6 @@ import {
   View, Text, StyleSheet,TouchableOpacity
 } from 'react-native';
 import  MapView, { Marker } from 'react-native-maps';
-import SearchBar from '../components/SearchBar'
 import Header from '../components/Header'
 import ParkingPage from './ParkingPage'
 import * as actions from '../actions'
@@ -36,7 +35,6 @@ class MainPage extends Component{
     render(){
       const { query } = this.state;
       const parkings = this.findParking(query);
-      console.log("PARKINGSSS:", parkings)
       const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
 
         return(
@@ -44,16 +42,21 @@ class MainPage extends Component{
         <ParkingPage backButtonHandler={this.backButtonHandler} parking={this.props.selectedParking}/>:
           <View style = {styles.container}>
             <Header title={'Find.Navigate.Park'} backButton={false} backButtonHandler={this.backButtonHandler}/>
-            {/* Map view is to be called with selected parking coordibated */}
-          
+          <View></View>
             <MapView
               style = {styles.map}
+              showsUserLocation={true}
+              showsMyLocationButton={true}
+              // followsUserLocation={true}
               region={{
                 latitude: this.state.shownLatitude,
                 longitude: this.state.shownLongitude,
                 latitudeDelta: 0.00922,
                 longitudeDelta: 0.00421,
-              }}>
+              }}
+              onPress={()=>{this.state.query === ''? null:this.setState({query:''})}}
+              // onPanDrag={()=>{this.setState({query:''})}}
+              >
             {this.props.parkingsMapInfo.map(parking =>{
               return(
                 <Marker
@@ -78,7 +81,7 @@ class MainPage extends Component{
                     onChangeText={text => this.setState({ query: text })}
                     placeholder="Enter parking's name"
                     renderItem={({item, i}) => (
-                      <TouchableOpacity onPress={() => this.setState({  query: item.name,
+                      <TouchableOpacity onPress={() => this.setState({  query: '',
                                                                         shownLatitude: item.latitude,
                                                                         shownLongitude: item.longitude })
 
@@ -89,7 +92,6 @@ class MainPage extends Component{
                       </TouchableOpacity>
                     )}
         />
-            {/* <SearchBar style = {styles.searchBar}/> */}
           </View>
             )
     }
@@ -102,18 +104,19 @@ const styles = StyleSheet.create({
   },
   map : {
     height:'100%' ,
+    marginBottom: 1
   },
   itemText: {
     fontSize: 15,
     margin: 4
   },
   autocompleteContainer: {
-    margin: 10,
+    marginHorizontal: 60,
     flex: 1,
     left: 0,
     position: 'absolute',
     right: 0,
-    top: '11%',
+    top: 90,
     zIndex: 1,
     elevation:5
   },
