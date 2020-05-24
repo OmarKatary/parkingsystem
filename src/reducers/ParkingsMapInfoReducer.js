@@ -1,14 +1,14 @@
 let parkings = [
     {
         id: 1,
-        name: "carrefour",
+        name: "Carrefour",
         latitude: 31.1683,
         longitude: 29.9316,
     },
     {
         id: 2,
-        name: "gamb carrefour",
-        latitude: 31.1683,
+        name: "Gamb Carrefour",
+        latitude: 31.16,
         longitude: 29.931,
     },
 

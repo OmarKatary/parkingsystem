@@ -13,6 +13,7 @@
     "@dudigital/react-native-zoomable-view": "^1.0.15",
     "react": "16.9.0",
     "react-native": "^0.62.2",
+    "react-native-autocomplete-input": "^4.2.0",
     "react-native-maps": "git+https://github.com/react-community/react-native-maps.git",
     "react-native-vector-icons": "^6.6.0",
     "react-redux": "^7.2.0",
