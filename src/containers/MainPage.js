@@ -105,10 +105,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 15,
-    margin: 4,
-    // borderColor:'gray',
-    // borderTopWidth:1,
-    autoCapitalize
+    margin: 4
   },
   autocompleteContainer: {
     margin: 10,

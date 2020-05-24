@@ -1,6 +1,6 @@
 parkingLots =[
     {   id: 1,
-        name: 'carrefourzz',
+        name: 'Carrefour',
         gridRows:2,
         gridColumns:2,
         latitude: 31.1683,
@@ -171,7 +171,7 @@ parkingLots =[
         ]
     },
     {   id: 2,
-        name: 'msh carrefourzz',
+        name: 'Gamb Carrefour',
         gridRows:2,
         gridColumns:2,
         latitude: 31.1683,

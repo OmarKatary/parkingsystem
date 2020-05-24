@@ -27,10 +27,6 @@ const styles = StyleSheet.create({
         paddingTop: 0,
         justifyContent:"space-between",
         alignItems:"center",
-        // shadowColor: '#232344',
-        // shadowOffset:{width:20, height:50},
-        // shadowOpacity:0.5,
-        // shadowRadius: 5,
         elevation:5,
         position:'relative'
 
