@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet,ScrollView,TouchableOpacity, Modal} from 'react-native';
 import ParkingLot from '../components/ParkingLot'
 import Header from '../components/Header'
+import CountCircle from '../components/CountCircle'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
@@ -39,6 +40,7 @@ class ParkingPage extends Component{
                 <View style={{flex:1}}>
                     <ParkingLot setModalVisibility={this.setModalVisibility} parking={this.props.parking}/>
                 </View>
+                <CountCircle style={styles.circleCount}>50</CountCircle>
             </View>
             
         )
@@ -70,6 +72,9 @@ const styles = StyleSheet.create({
         elevation:2,
         paddingVertical:5,
         paddingHorizontal:35
+    },
+    circleCount:{
+        margin: 20
     }
     
 })

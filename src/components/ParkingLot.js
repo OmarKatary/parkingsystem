@@ -138,6 +138,7 @@ class ParkingLot extends Component{
     return( 
         <PanGestureHandler
         // enabled={this.state.allowPan}
+        minDeltaX ={5}
         shouldCancelWhenOutside={true}
         maxPointers={1}
         ref={this.panRef}
