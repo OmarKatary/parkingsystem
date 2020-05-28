@@ -11,7 +11,7 @@ import {
 
 class ParkingLot extends Component{
     state = {   pendingSpotExists:false,
-                allowPan:false  
+                // allowPan:false  
             }
 
     panRef = React.createRef();
