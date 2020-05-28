@@ -256,7 +256,9 @@ const styles = StyleSheet.create({
         width : '100%',
         height : '100%',
         // backgroundColor:'#f1f1f1',
-        padding:20
+        paddingHorizontal:20,
+        paddingTop: 80,
+        paddingBottom: 20,
     }
   })
 

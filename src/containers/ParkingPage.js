@@ -3,6 +3,7 @@ import {View, Text, StyleSheet,ScrollView,TouchableOpacity, Modal} from 'react-n
 import ParkingLot from '../components/ParkingLot'
 import Header from '../components/Header'
 import CountCircle from '../components/CountCircle'
+import TextPopUp from '../components/TextPopUp'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
@@ -40,6 +41,7 @@ class ParkingPage extends Component{
                 <View style={{flex:1}}>
                     <ParkingLot setModalVisibility={this.setModalVisibility} parking={this.props.parking}/>
                 </View>
+                <TextPopUp>Please choose a parking spot to be reserved for the following 90 seconds.</TextPopUp>
                 <CountCircle style={styles.circleCount}>50</CountCircle>
             </View>
             
