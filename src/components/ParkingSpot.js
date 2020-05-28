@@ -26,7 +26,7 @@ class ParkingSpot extends Component{
         return(
             <TouchableOpacity
                 disabled={this.props.isOccupied}
-                style =  { [this.state.setPending? styles.pendingParkingSpot:(this.props.isOccupied? styles.occupiedParkingSpot : styles.emptyParkingSpot), 
+                style =  { [this.state.setPending? [styles.pendingParkingSpot, {borderRadius: 0.2*height}]:(this.props.isOccupied? [styles.occupiedParkingSpot, {borderRadius: 0.2*height}] : [styles.emptyParkingSpot, {borderRadius: 0.2*height}]), 
                             this.props.isParkingSpotHorizontal? {width:width, height:height}: {width:height, height:width}]}
                 onPress={() => {this.chooseParkingSpot(this.props.parkingId, this.props.sectionId, this.props.id)
                             this.props.setModalVisibility(true)}}>
@@ -57,20 +57,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#b30000',
         borderWidth: 1,
         borderColor: "white",
-        borderRadius: 8,
+        // borderRadius: 8,
 
     },
     emptyParkingSpot: {
         backgroundColor: '#009933',
         borderWidth: 1,
         borderColor: "white",
-        borderRadius: 8,
+        // borderRadius: 8,
     },
     pendingParkingSpot: {
         backgroundColor: 'yellow',
         borderWidth: 1,
         borderColor: "white",
-        borderRadius: 8,
+        // borderRadius: 8,
     },
     verticalIcon:{
         transform: [ {rotate: '90deg'}]

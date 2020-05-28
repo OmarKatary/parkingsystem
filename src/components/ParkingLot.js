@@ -93,23 +93,12 @@ class ParkingLot extends Component{
                 }else if(this._lastOffset.y > screenHeight * ((this._lastScale-1)*0.25)){
                     this._lastOffset.y =  screenHeight * ((this._lastScale-1)*0.25)+1
                 }
+             
+                this._translateX.setOffset(this._lastOffset.x);
+                this._translateX.setValue(0);
+                this._translateY.setOffset(this._lastOffset.y);
+                this._translateY.setValue(0);
 
-                Animated.timing(this._translateX,
-                {toValue:this._lastOffset.x,
-                duration:100,
-                useNativeDriver:true}).start()
-
-                Animated.timing(this._translateY,
-                {toValue:this._lastOffset.y,
-                duration:100,
-                useNativeDriver:true}).start()
-
-                // this._translateX.setOffset(this._lastOffset.x);
-                // this._translateX.setValue(0);
-                // this._translateY.setOffset(this._lastOffset.y);
-                // this._translateY.setValue(0);
-
-            
         }
       };
 
@@ -265,7 +254,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         width : '100%',
         height : '100%',
-        backgroundColor:'#f1f1f1',
+        // backgroundColor:'#f1f1f1',
         padding:20
     }
   })
