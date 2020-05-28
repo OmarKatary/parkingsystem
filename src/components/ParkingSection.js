@@ -8,7 +8,7 @@ class ParkingSection extends Component{
     render(){
     return(
         this.props.isDoubleSectioned?
-        <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSection:styles.parkingVerticalSection}>
+        <View key = {this.props.key} style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSection:styles.parkingVerticalSection}>
             <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
                 {this.props.parkingSpots.map( spot => {
                     if(spot.subSectionIndex == 1){
@@ -21,7 +21,8 @@ class ParkingSection extends Component{
                                     setPendingSpotExists={this.props.setPendingSpotExists}
                                     setModalVisibility={this.props.setModalVisibility}
                                     parkingId = {this.props.parkingId}
-                                    sectionId = {this.props.sectionId}/>
+                                    sectionId = {this.props.sectionId}
+                                    spotScale={this.props.spotScale}/>
                     )
                     }}
                     )
@@ -40,7 +41,8 @@ class ParkingSection extends Component{
                                 setPendingSpotExists={this.props.setPendingSpotExists}
                                 setModalVisibility={this.props.setModalVisibility}
                                 parkingId = {this.props.parkingId}
-                                sectionId = {this.props.sectionId}/>
+                                sectionId = {this.props.sectionId}
+                                spotScale={this.props.spotScale}/>
                 )
                 }}
                 )
@@ -48,7 +50,7 @@ class ParkingSection extends Component{
             </View> 
         </View>
         :
-        <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSection:styles.parkingVerticalSection}>
+        <View key = {this.props.key} style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSection:styles.parkingVerticalSection}>
         <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
             {this.props.parkingSpots.map( spot => {
                 return(
@@ -60,7 +62,8 @@ class ParkingSection extends Component{
                                 setPendingSpotExists={this.props.setPendingSpotExists}
                                 setModalVisibility={this.props.setModalVisibility}
                                 parkingId = {this.props.parkingId}
-                                sectionId = {this.props.sectionId}/>
+                                sectionId = {this.props.sectionId}
+                                spotScale={this.props.spotScale}/>
                 )
                 }
                 )
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
     parkingVerticalSection:{
         flex:1,
         flexDirection: 'row',
-        margin:20
+        margin:10
     },
     parkingHorizontalSubSection : {
         flexDirection : 'row'
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
     parkingHorizontalSection:{
         flex:1,
         flexDirection: 'column',
-        margin:20
+        margin:10
     }
   })
 
