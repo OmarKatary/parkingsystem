@@ -7,7 +7,7 @@ export const getSelectedParkingActionCreator = (parkingKey) => {
     console.log('parkingKey: ' + parkingKey)
     return (dispatch, getState) => {
         let parkingNodeRef = db.ref("fnp2020-9f5c4/" + parkingKey);
-        parkingNodeRef.on('value').then(function (snapshot) {
+        parkingNodeRef.on('value', function (snapshot) {
             console.log('this is listener')
             let parking = snapshot.val()
             parking.key = snapshot.key
@@ -50,8 +50,11 @@ export const reserveParkingSpotActionCreator = (parkingSpotDetails) => {
 export const getParkingsActionCreator = () => {
 
     return (dispatch, getState) => {
+
         var parkingNodeRef = db.ref("fnp2020-9f5c4");
+        // console.log("Mshhh Kataryyyy")
         parkingNodeRef.once('value').then(function (snapshot) {
+            
             var parkingsArray = snapshotToArray(snapshot);
 
             dispatch({

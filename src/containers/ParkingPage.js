@@ -21,6 +21,20 @@ class ParkingPage extends Component{
     setModalVisibility = (value) =>{
         this.setState({isModalVisible: value})
     }
+
+    countFreeSpots = (sections) =>{
+        let count = 0
+        sections.forEach(section => {
+            section.parkingSpots.forEach(parking =>{
+                if(!parking.isOccupied){
+                    count++
+                }
+            })
+            
+        });
+
+        return count
+    }
     // fadeIn = () => {
     //     // Will change fadeAnim value to 1 in 5 seconds
     //     Animated.timing(fadeAnim, {
@@ -73,7 +87,7 @@ class ParkingPage extends Component{
                     <Animated.View style={[styles.animatedView,
                                         //  { opacity: fadeAnim }
                                     ]}>
-                        <CountCircle>50</CountCircle>
+                        <CountCircle>{this.countFreeSpots(this.props.parking.parkingSections)}</CountCircle>
                     </Animated.View>
          
                 </View> 

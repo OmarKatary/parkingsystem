@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, View,ScrollView,Text, Dimensions,PanResponder, Animated } from 'react-native';
 import ParkingSection from './ParkingSection'
-import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
 import {
     PanGestureHandler,
     PinchGestureHandler,
