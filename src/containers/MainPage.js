@@ -14,13 +14,19 @@ class MainPage extends Component{
           shownLatitude:31.1683,
           shownLongitude:29.9316
         }
+    constructor(props) {
+    super(props);
+    props.getParkingsActionCreator();
+  }
 
   backButtonHandler = (value) =>{
+    this.props.getParkingsActionCreator(); //either this or set parkings in reducer
+
     this.setState({showParking:value})
   }
 
-  getParkingId = (id) =>{
-    return id
+  getParkingKey = (key) =>{
+    return key
   }
 
   findParking = (query) => {
@@ -58,16 +64,17 @@ class MainPage extends Component{
               // onPanDrag={()=>{this.setState({query:''})}}
               >
             {this.props.parkingsMapInfo.map(parking =>{
+
               return(
                 <Marker
-                    coordinate={{
-                    latitude: parking.latitude,
-                    longitude: parking.longitude}}
-                    title= {parking.name}
-                    onPress={ e =>{ let parkingId = this.getParkingId(parking.id)
-                                    this.props.getSelectedParkingActionCreator(parkingId)
-                                    this.setState({showParking:true})}}
-                />
+                coordinate={{
+                latitude: parking.latitude,
+                longitude: parking.longitude}}
+                title= {parking.name}
+                onPress={ e =>{ let parkingKey = this.getParkingKey(parking.key)
+                                this.props.getSelectedParkingActionCreator(parkingKey)
+                                this.setState({showParking:true})}}
+            />
               )
             })}
             
@@ -125,6 +132,7 @@ const styles = StyleSheet.create({
 
 })
 // selectedParkingActionCreator
+//ana hastafad eh lma el selectedParking teb2a fel props madam heyya kda kda mmken agebha men el state
 const mapStateToProps = (state) =>{
   return {selectedParking: state.selectedParking,
           parkingsMapInfo : state.parkingsMapInfo}

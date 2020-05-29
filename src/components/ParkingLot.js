@@ -113,7 +113,7 @@ class ParkingLot extends Component{
         for(let i=1; i<=this.props.parking.gridColumns; i++){
             this.props.parking.parkingSections.map(section =>{
                 if(section.sectionColumn == i){
-                    sectionViewList.push(<ParkingSection    parkingId = {this.props.parking.id}
+                    sectionViewList.push(<ParkingSection    parkingId = {this.props.parking.key}
                                                             sectionId = {section.parkingSectionId}
                                                             parkingSpots = {section.parkingSpots}
                                                             key={section.parkingSectionID} 

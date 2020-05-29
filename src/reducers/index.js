@@ -1,8 +1,16 @@
-import {combineReducers} from 'redux'
+//store
+import {createStore, combineReducers} from 'redux'
+import { applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import ParkingSelectionReducer from './ParkingSelectionReducer'
 import ParkingsMapInfoReducer from './ParkingsMapInfoReducer'
 
-export default combineReducers({
+const rootReducer = combineReducers({
     selectedParking: ParkingSelectionReducer,
-    parkingsMapInfo: ParkingsMapInfoReducer
+    parkingsMapInfo: ParkingsMapInfoReducer,
 })
+
+const configureStore = () => {
+    return createStore(rootReducer, applyMiddleware(thunk));
+}
+export default configureStore;
