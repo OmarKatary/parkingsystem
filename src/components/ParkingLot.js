@@ -111,10 +111,10 @@ class ParkingLot extends Component{
         let sectionViewList = []
         let scale = this.getWidthRatio(this.props.parking)
         for(let i=1; i<=this.props.parking.gridColumns; i++){
-            this.props.parking.parkingSections.map(section =>{
+            this.props.parking.parkingSections.map((section, index) =>{
                 if(section.sectionColumn == i){
                     sectionViewList.push(<ParkingSection    parkingId = {this.props.parking.key}
-                                                            sectionId = {section.parkingSectionId}
+                                                            sectionId = {index}
                                                             parkingSpots = {section.parkingSpots}
                                                             key={section.parkingSectionID} 
                                                             isParkingSpotHorizontal={section.isParkingSpotHorizontal} 
@@ -173,22 +173,23 @@ class ParkingLot extends Component{
     }
 
     getWidthRatio = (parking)=>{
-       
+       if(Object.keys(parking).length!==0){
         const screenWidth = Math.round(Dimensions.get('window').width);
+        const screenHeight = Math.round(Dimensions.get('window').height);
 
         let {parkingSections, gridRows, gridColumns} = parking
-        let scale
+        let scaleWidth, scaleHeight
 
         let rows = []
-        // let columnHeight = []
-        // let columnWidth = []
+        let colHeight = []
+        let colWidth = []
         for(let r=0; r<gridRows; r++){
             rows.push(0)
         }
-        // for(let c=0; c<gridColumns; c++){
-        //     columnHeight.push(0)
-        //     columnWidth.push(0)
-        // }
+        for(let c=0; c<gridColumns; c++){
+            colHeight.push(0)
+            colWidth.push(0)
+        }
 
         for(let i=0; i< parkingSections.length; i++){
             let numberOfSpots = parkingSections[i].parkingSpots.length
@@ -203,16 +204,25 @@ class ParkingLot extends Component{
             if(parkingSections[i].isParkingSectionHorizontal){
                 if(parkingSections[i].isParkingSpotHorizontal){
                     rows[r] += numberOfSpots * 2
-                    // if(columnWidth[c] < numberOfSpots * 2){
-                    //     columnWidth[c] = numberOfSpots * 2
-                    // }
+                    if(parkingSections[i].isDoubleSectioned){
+                        colHeight[c] += 2*1
+                    }else{
+                        colHeight[c] += 1*1
+                    }
+                    
                 }
                 else{
                     rows[r] += numberOfSpots * 1
+                    if(parkingSections[i].isDoubleSectioned){
+                        colHeight[c] += 2*2
+                    }else{
+                        colHeight[c] += 1*2
+                    }
                 }
             }
             else{
                 if(parkingSections[i].isParkingSpotHorizontal){
+                    colHeight[c] += numberOfSpots * 1
                     if(parkingSections[i].isDoubleSectioned){
                         rows[r] += 2 * 2
                     }else{
@@ -220,6 +230,7 @@ class ParkingLot extends Component{
                     }
                 }
                 else{
+                    colHeight[c] += numberOfSpots * 2
                     if(parkingSections[i].isDoubleSectioned){
                         rows[r] += 2 * 1
                     }else{
@@ -229,17 +240,27 @@ class ParkingLot extends Component{
             }
         }
         let maxWidth = 1
+        let maxHeight = 1
         for(let r=0; r<gridRows; r++){
             if(maxWidth < rows[r])
                 maxWidth = rows[r]
         }
-        console.log("maxWidth: ",maxWidth)
-        // console.log("rows: ",rows)
-        scale = (screenWidth-gridColumns*25)/maxWidth
-        console.log("scale: ",scale)
-        return scale
+        for(let c=0; c<gridColumns; c++){
+            if(maxHeight < colHeight[c])
+                maxHeight = colHeight[c]
+        }
+        scaleWidth = (screenWidth-gridColumns*25)/maxWidth
+        scaleHeight = (screenHeight-320)/maxHeight
+        let smallerScale = scaleWidth<=scaleHeight? scaleWidth:scaleHeight
+        // console.log("maxWidth: ",maxWidth)
+        // // console.log("rows: ",rows)
+        // scale = (screenWidth-gridColumns*25)/maxWidth
+        // console.log("scale: ",scale)
+        return smallerScale
         
+        }
     }
+        
 }
 
 

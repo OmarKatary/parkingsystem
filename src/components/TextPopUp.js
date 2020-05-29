@@ -13,14 +13,12 @@ class TextPopUp extends Component{
 const styles = StyleSheet.create({
     popUp:{
         position: 'absolute',
-        top: 100,
+        top: 20,
         left: '10%',
         width: '80%',
         backgroundColor: '#f1f1f1aa',
-        borderRadius:10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',        
+        borderRadius:10
+          
     },
     text:{
         flex:1,

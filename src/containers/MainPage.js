@@ -42,8 +42,8 @@ class MainPage extends Component{
       const { query } = this.state;
       const parkings = this.findParking(query);
       const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
-
-        return(
+      
+      return(
         this.state.showParking?
         <ParkingPage backButtonHandler={this.backButtonHandler} parking={this.props.selectedParking}/>:
           <View style = {styles.container}>
