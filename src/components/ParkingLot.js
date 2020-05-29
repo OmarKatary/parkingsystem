@@ -47,10 +47,12 @@ class ParkingLot extends Component{
 
     _onPinchHandlerStateChange = event => {
         if (event.nativeEvent.oldState === State.ACTIVE ) {
+            this.props.fadeTextFunction(0)
             this._lastScale *= event.nativeEvent.scale
             this._baseScale.setValue(this._lastScale)
             this._pinchScale.setValue(1)
           if(this._lastScale <  1){
+            this.props.fadeTextFunction(1)
             this._lastScale = 1
             this._baseScale.setValue(this._lastScale )
             this._pinchScale.setValue(1)
@@ -137,7 +139,7 @@ class ParkingLot extends Component{
     return( 
         <PanGestureHandler
         // enabled={this.state.allowPan}
-        minDeltaX ={5}
+        // minDeltaX ={5}
         shouldCancelWhenOutside={true}
         maxPointers={1}
         ref={this.panRef}
@@ -147,6 +149,7 @@ class ParkingLot extends Component{
         onHandlerStateChange={this._onHandlerStateChange}>
             <Animated.View style={styles.wrapper}>
                 <PinchGestureHandler
+                    minPointers={2}
                     ref={this.pinchRef}
                     simultaneousHandlers={this.panRef}
                     onGestureEvent={this._onPinchGestureEvent}

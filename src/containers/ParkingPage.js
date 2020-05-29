@@ -8,15 +8,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
 class ParkingPage extends Component{
-    state = {isModalVisible: false}
-
-    // fadeAnim = useRef(new Animated.Value(0)).current;
-    // constructor(props){
-    //     super(props)
-    //     this.state = {
-    //         fadeAnim: new Animated.Value(0)
-    //       }
-    // }
+    state = {isModalVisible: false,
+            fadeValue: new Animated.Value(1) }
 
     setModalVisibility = (value) =>{
         this.setState({isModalVisible: value})
@@ -24,32 +17,28 @@ class ParkingPage extends Component{
 
     countFreeSpots = (sections) =>{
         let count = 0
+        if(sections !== undefined){
         sections.forEach(section => {
             section.parkingSpots.forEach(parking =>{
                 if(!parking.isOccupied){
                     count++
                 }
             })
-            
+        
         });
-
+    }
         return count
     }
-    // fadeIn = () => {
-    //     // Will change fadeAnim value to 1 in 5 seconds
-    //     Animated.timing(fadeAnim, {
-    //     toValue: 1,
-    //     duration: 2000
-    //     }).start();
-    // };
 
-    // fadeOut = () => {
-    //     // Will change fadeAnim value to 0 in 5 seconds
-    //     Animated.timing(fadeAnim, {
-    //     toValue: 0,
-    //     duration: 2000
-    //     }).start();
-    // };
+    fadeOut = (val) => {
+
+        Animated.timing(this.state.fadeValue, {
+        toValue: val,
+        duration: 1000,
+        useNativeDriver:true
+        }).start();
+    };
+
     render(){
         return(
             <View style={styles.parkingView}>
@@ -79,11 +68,11 @@ class ParkingPage extends Component{
                 <View style={{flex:1}}>
                     <Animated.View       style={[
                                                 styles.animatedView,
-                                                // { opacity: fadeAnim }
+                                                { opacity: this.state.fadeValue }
                                                 ]}>
                         <TextPopUp>Please choose a parking spot to be reserved for the following 90 seconds.</TextPopUp>
                     </Animated.View>
-                    <ParkingLot setModalVisibility={this.setModalVisibility} parking={this.props.parking}/>
+                    <ParkingLot setModalVisibility={this.setModalVisibility} parking={this.props.parking} fadeTextFunction ={this.fadeOut}/>
                     <Animated.View style={[styles.animatedView,
                                         //  { opacity: fadeAnim }
                                     ]}>

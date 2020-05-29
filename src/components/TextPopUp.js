@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         left: '10%',
         width: '80%',
         backgroundColor: '#f1f1f1aa',
-        borderRadius:10
+        borderRadius:10,
           
     },
     text:{
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         textAlign: 'center',
         fontSize:18,
+        padding:4
     }
 })
 export default TextPopUp
