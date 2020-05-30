@@ -9,9 +9,7 @@ import {
   } from 'react-native-gesture-handler';
 
 class ParkingLot extends Component{
-    state = {   pendingSpotExists:false,
-                // allowPan:false  
-            }
+    state = {   pendingSpotExists:false  }
 
     panRef = React.createRef();
     pinchRef = React.createRef();
@@ -103,9 +101,6 @@ class ParkingLot extends Component{
         }
       };
 
-    setPendingSpotExists = (value) => {
-        this.setState({pendingSpotExists:value})
-    }
 
     sectionGenerator = () => {
         let parkingColumns = []
@@ -121,8 +116,8 @@ class ParkingLot extends Component{
                                                             isParkingSpotHorizontal={section.isParkingSpotHorizontal} 
                                                             isParkingSectionHorizontal={section.isParkingSectionHorizontal} 
                                                             isDoubleSectioned={section.isDoubleSectioned}
-                                                            pendingSpotExists={this.state.pendingSpotExists}
-                                                            setPendingSpotExists={this.setPendingSpotExists}
+                                                            pendingSpotExists={this.props.pendingSpotExists}
+                                                            setPendingSpotExists={this.props.setPendingSpotExists}
                                                             setModalVisibility={this.props.setModalVisibility}
                                                             spotScale={scale} />)
                 }
@@ -278,7 +273,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         width : '100%',
         height : '100%',
-        // backgroundColor:'#f1f1f1',
+        // backgroundColor:'#f1f111',
         paddingHorizontal:20,
         paddingTop: 80,
         paddingBottom: 20,

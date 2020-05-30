@@ -12,10 +12,11 @@ class ParkingSpot extends Component{
             this.props.setPendingSpotExists(true)
             this.setState({setPending:true})
             this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: true})
+
             setTimeout(()=>{ this.setState({setPending:false})
                              this.props.setPendingSpotExists(false)
                              this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: false})
-                            }, 5000)
+                            }, 10000)
             
         }
     }

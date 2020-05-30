@@ -5,11 +5,18 @@ import Header from '../components/Header'
 import CountCircle from '../components/CountCircle'
 import TextPopUp from '../components/TextPopUp'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 
 
 class ParkingPage extends Component{
     state = {isModalVisible: false,
-            fadeValue: new Animated.Value(1) }
+            fadeTextValue: new Animated.Value(1),
+            pendingSpotExists:false,
+        }
+
+    setPendingSpotExists = (value) => {
+        this.setState({pendingSpotExists:value})
+    }
 
     setModalVisibility = (value) =>{
         this.setState({isModalVisible: value})
@@ -30,14 +37,14 @@ class ParkingPage extends Component{
         return count
     }
 
-    fadeOut = (val) => {
-
-        Animated.timing(this.state.fadeValue, {
+    fadeText = (val) => {
+        Animated.timing(this.state.fadeTextValue, {
         toValue: val,
         duration: 1000,
         useNativeDriver:true
         }).start();
     };
+
 
     render(){
         return(
@@ -66,19 +73,37 @@ class ParkingPage extends Component{
 
                 <Header title={this.props.parking.name} backButton={true} backButtonHandler={this.props.backButtonHandler}/>
                 <View style={{flex:1}}>
-                    <Animated.View       style={[
-                                                styles.animatedView,
-                                                { opacity: this.state.fadeValue }
-                                                ]}>
-                        <TextPopUp>Please choose a parking spot to be reserved for the following 90 seconds.</TextPopUp>
+                    {this.state.pendingSpotExists?
+                    <View style={[styles.timer,]}>
+                        <CountdownCircleTimer       
+                            isPlaying
+                            size = {40}
+                            strokeWidth={8}
+                            duration={10}
+                            // colors={[['#004777', 0.33], ['#F7B801', 0.33], ['#A30000']]}
+                            colors={[['#ffc34d']]}>
+                                {({ remainingTime, animatedColor }) => (
+                                    <Animated.Text style={{ color: animatedColor }}>
+                                    {remainingTime}
+                                </Animated.Text>)}
+                        </CountdownCircleTimer>
+                    </View>
+                    :
+                    <Animated.View       style={[styles.animatedView,
+                                                { opacity: this.state.fadeTextValue }]}>
+                        <TextPopUp>Please choose a parking spot to be reserved for the following 10 seconds.</TextPopUp>
                     </Animated.View>
-                    <ParkingLot setModalVisibility={this.setModalVisibility} parking={this.props.parking} fadeTextFunction ={this.fadeOut}/>
+                     }
+                    <ParkingLot setModalVisibility={this.setModalVisibility} 
+                                parking={this.props.parking} 
+                                fadeTextFunction ={this.fadeText}
+                                pendingSpotExists={this.state.pendingSpotExists}
+                                setPendingSpotExists={this.setPendingSpotExists}/>
                     <Animated.View style={[styles.animatedView,
                                         //  { opacity: fadeAnim }
                                     ]}>
                         <CountCircle>{this.countFreeSpots(this.props.parking.parkingSections)}</CountCircle>
                     </Animated.View>
-         
                 </View> 
             </View>
             
@@ -116,6 +141,14 @@ const styles = StyleSheet.create({
         flex:1,
         elevation:5
     },
+    timer:{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        margin: 20,
+        flex:1,
+        elevation:5
+    }
 
     
 })
