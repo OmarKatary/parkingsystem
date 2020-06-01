@@ -1,4 +1,5 @@
 import React, {Component, useRef} from 'react';
+import {connect} from 'react-redux'
 import {View, Text, StyleSheet,ScrollView,TouchableOpacity, Modal, Animated} from 'react-native';
 import ParkingLot from '../components/ParkingLot'
 import Header from '../components/Header'
@@ -7,6 +8,8 @@ import TextPopUp from '../components/TextPopUp'
 import ConfirmationDrawer from '../components/ConfirmationDrawer'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
+import * as actions from '../actions'
+
 
 
 class ParkingPage extends Component{
@@ -44,11 +47,15 @@ class ParkingPage extends Component{
     reserveConfirmationYesButton = () =>{
         this.setState({reserveApproved:true,
                         pendingSpotExists:true,
-                        openDrawer:false})
+                        openDrawer:false,
+                    })
+        this.props.reserveParkingSpotActionCreator({parkingId:this.props.parking.key, sectionId:this.state.requestedSectionId, spotId:this.state.requestedSpotId, isPending: true})
+
         setTimeout(()=>{ 
             this.setState({reserveApproved:false,
                           pendingSpotExists:false})
-        },10000)
+            this.props.reserveParkingSpotActionCreator({parkingId:this.props.parking.key, sectionId:this.state.requestedSectionId, spotId:this.state.requestedSpotId, isPending: false})
+        }, 10000)
         
     }
     reserveConfirmationNoButton = () => {
@@ -167,4 +174,4 @@ const styles = StyleSheet.create({
 
     
 })
-export default ParkingPage
+export default connect(null, actions)(ParkingPage)
