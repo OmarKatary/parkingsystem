@@ -4,6 +4,7 @@ import ParkingLot from '../components/ParkingLot'
 import Header from '../components/Header'
 import CountCircle from '../components/CountCircle'
 import TextPopUp from '../components/TextPopUp'
+import ConfirmationDrawer from '../components/ConfirmationDrawer'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 
@@ -12,6 +13,10 @@ class ParkingPage extends Component{
     state = {isModalVisible: false,
             fadeTextValue: new Animated.Value(1),
             pendingSpotExists:false,
+            requestedSpotId : null,
+            requestedSectionId : null,
+            reserveApproved:false,
+            openDrawer:false
         }
 
     setPendingSpotExists = (value) => {
@@ -29,12 +34,33 @@ class ParkingPage extends Component{
             section.parkingSpots.forEach(parking =>{
                 if(!parking.isOccupied){
                     count++
-                }
-            })
-        
-        });
-    }
+                    }
+                })
+            });
+        }
         return count
+    }
+
+    reserveConfirmationYesButton = () =>{
+        this.setState({reserveApproved:true,
+                        pendingSpotExists:true,
+                        openDrawer:false})
+        setTimeout(()=>{ 
+            this.setState({reserveApproved:false,
+                          pendingSpotExists:false})
+        },10000)
+        
+    }
+    reserveConfirmationNoButton = () => {
+        this.setState({openDrawer:false})
+    }
+
+    getRequestedSpot = (spotId, sectionId) =>{
+        this.setState({
+            requestedSpotId : spotId,
+            requestedSectionId : sectionId,
+            openDrawer: true
+        })
     }
 
     fadeText = (val) => {
@@ -44,33 +70,12 @@ class ParkingPage extends Component{
         useNativeDriver:true
         }).start();
     };
-
+    
+    
 
     render(){
         return(
             <View style={styles.parkingView}>
-                {/* <Modal visible={this.state.isModalVisible} animationType='slide' transparent={true} > 
-                    <View style={styles.modalBlurBackground}>
-                        <View style={styles.modalContainer}>
-                            <FontAwesome5   name={"times"} 
-                                            size={25}
-                                            color={"#1a1a1a"}      
-                                            onPress={()=>{this.setModalVisibility(false)}}/>
-                            <Text>Are you sure you want to temporarily reserve this spot?</Text>
-                            <View style={styles.buttonsView}>
-                                <TouchableOpacity style={styles.button}
-                                                  onPress={()=>{this.setModalVisibility(false)}}>
-                                    <Text>Yes</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity   style={styles.button}
-                                                    onPress={()=>{this.setModalVisibility(false)}}>
-                                    <Text>No</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                </Modal> */}
-
                 <Header title={this.props.parking.name} backButton={true} backButtonHandler={this.props.backButtonHandler}/>
                 <View style={{flex:1}}>
                     {this.state.pendingSpotExists?
@@ -98,12 +103,22 @@ class ParkingPage extends Component{
                                 parking={this.props.parking} 
                                 fadeTextFunction ={this.fadeText}
                                 pendingSpotExists={this.state.pendingSpotExists}
-                                setPendingSpotExists={this.setPendingSpotExists}/>
+                                setPendingSpotExists={this.setPendingSpotExists}
+                                getRequestedSpot={this.getRequestedSpot}
+                                requestedSpotId={this.state.requestedSpotId}
+                                requestedSectionId={this.state.requestedSectionId}
+                                reserveApproved={this.state.reserveApproved}/>
+
                     <Animated.View style={[styles.animatedView,
                                         //  { opacity: fadeAnim }
                                     ]}>
                         <CountCircle>{this.countFreeSpots(this.props.parking.parkingSections)}</CountCircle>
                     </Animated.View>
+                    <ConfirmationDrawer openDrawer={this.state.openDrawer}
+                                        yesButtonFunction={this.reserveConfirmationYesButton}
+                                        noButtonFunction={this.reserveConfirmationNoButton}>
+                                            Are you sure you want to reserve this spot?
+                                            </ConfirmationDrawer>
                 </View> 
             </View>
             

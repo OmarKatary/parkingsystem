@@ -4,7 +4,6 @@ import ParkingSection from './ParkingSection'
 import {
     PanGestureHandler,
     PinchGestureHandler,
-    RotationGestureHandler,
     State,
   } from 'react-native-gesture-handler';
 
@@ -119,7 +118,11 @@ class ParkingLot extends Component{
                                                             pendingSpotExists={this.props.pendingSpotExists}
                                                             setPendingSpotExists={this.props.setPendingSpotExists}
                                                             setModalVisibility={this.props.setModalVisibility}
-                                                            spotScale={scale} />)
+                                                            spotScale={scale} 
+                                                            getRequestedSpot={this.props.getRequestedSpot}
+                                                            requestedSpotId={this.props.requestedSpotId}
+                                                            requestedSectionId={this.props.requestedSectionId}
+                                                            reserveApproved={this.props.reserveApproved}/>)
                 }
             })
          
@@ -159,7 +162,9 @@ class ParkingLot extends Component{
                             },]}>
 
                     <View style={styles.parkingLot}>
+                        {/* <View style={{flex:1}}> */}
                             {columnsList.map((column)=>{ return column})}
+                        {/* </View> */}
                     </View>
 
                     </Animated.View>
@@ -264,11 +269,10 @@ class ParkingLot extends Component{
 const styles = StyleSheet.create({
 
     parkingSection:{
-        // margin:20
-        
+        // margin:20,        
     },
     parkingLot : {
-        // flex:1,
+        //flex:1,
         flexDirection: 'row',
         justifyContent:'center',
         width : '100%',

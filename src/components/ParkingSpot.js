@@ -6,31 +6,38 @@ import * as actions from '../actions'
 
 
 class ParkingSpot extends Component{ 
-    state = {setPending:false}
-    chooseParkingSpot = (parkingId, sectionId, spotId) =>{
-        if(!this.props.pendingSpotExists){
-            this.props.setPendingSpotExists(true)
-            this.setState({setPending:true})
-            this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: true})
+    // state = {setPending:false}
 
-            setTimeout(()=>{ this.setState({setPending:false})
-                             this.props.setPendingSpotExists(false)
-                             this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: false})
-                            }, 10000)
+    // chooseParkingSpot = (parkingId, sectionId, spotId) =>{
+    //     if(!this.props.pendingSpotExists){
+    //         this.props.setPendingSpotExists(true)
+    //         // this.setState({setPending:true})
+    //         this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: true})
+
+    //         setTimeout(()=>{ 
+    //                         //  this.setState({setPending:false})
+    //                          this.props.setPendingSpotExists(false)
+    //                          this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: false})
+    //                         }, 10000)
             
-        }
-    }
+    //     }
+    // }
     render(){
         const width = 2*this.props.spotScale
         const height = this.props.spotScale
 
         return(
+            <View>
             <TouchableOpacity
-                disabled={this.props.isOccupied}
-                style =  { [this.state.setPending? [styles.pendingParkingSpot, {borderRadius: 0.2*height}]:(this.props.isOccupied? [styles.occupiedParkingSpot, {borderRadius: 0.2*height}] : [styles.emptyParkingSpot, {borderRadius: 0.2*height}]), 
+                disabled={this.props.isOccupied||this.props.pendingSpotExists}
+                style =  { [this.props.isPending? [styles.pendingParkingSpot, {borderRadius: 0.2*height}]:(this.props.isOccupied? [styles.occupiedParkingSpot, {borderRadius: 0.2*height}] : [styles.emptyParkingSpot, {borderRadius: 0.2*height}]), 
                             this.props.isParkingSpotHorizontal? {width:width, height:height}: {width:height, height:width}]}
-                onPress={() => {this.chooseParkingSpot(this.props.parkingId, this.props.sectionId, this.props.id)
-                            this.props.setModalVisibility(true)}}>
+                onPress={() => {
+                                    this.props.getRequestedSpot(this.props.id,this.props.sectionId)
+                                    
+                                // this.chooseParkingSpot(this.props.parkingId, this.props.sectionId, this.props.id)
+                                // this.props.setModalVisibility(true)
+                                }}>
                 <View style={this.props.isParkingSpotHorizontal? styles.horizontalIconView: styles.verticalIconView}> 
                     {this.props.isOccupied?
                     <FontAwesome5   style={this.props.isParkingSpotHorizontal? styles.horizontalIcon: styles.verticalIcon}
@@ -40,6 +47,7 @@ class ParkingSpot extends Component{
                                     />:null}
                 </View>
             </TouchableOpacity>
+            </View>
             
         )
     }

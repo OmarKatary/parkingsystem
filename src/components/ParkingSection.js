@@ -5,6 +5,41 @@ import ParkingSpot from './ParkingSpot'
 
 class ParkingSection extends Component{       
     
+    createParkingSpot= (spot) =>{
+
+        if(spot.parkingSpotIndex === this.props.requestedSpotId && this.props.sectionId === this.props.requestedSectionId){
+            return(
+                <ParkingSpot    key={spot.parkingSpotIndex} 
+                                id={spot.parkingSpotIndex} 
+                                isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
+                                isOccupied={spot.isOccupied}
+                                pendingSpotExists={this.props.pendingSpotExists}
+                                setPendingSpotExists={this.props.setPendingSpotExists}
+                                setModalVisibility={this.props.setModalVisibility}
+                                parkingId={this.props.parkingId}
+                                sectionId={this.props.sectionId}
+                                spotScale={this.props.spotScale}
+                                getRequestedSpot={this.props.getRequestedSpot}
+                                isPending={this.props.reserveApproved}/>
+                                
+            )}
+        else
+            return(
+                <ParkingSpot    key={spot.parkingSpotIndex} 
+                                id={spot.parkingSpotIndex} 
+                                isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
+                                isOccupied={spot.isOccupied}
+                                pendingSpotExists={this.props.pendingSpotExists}
+                                setPendingSpotExists={this.props.setPendingSpotExists}
+                                setModalVisibility={this.props.setModalVisibility}
+                                parkingId={this.props.parkingId}
+                                sectionId={this.props.sectionId}
+                                spotScale={this.props.spotScale}
+                                getRequestedSpot={this.props.getRequestedSpot}
+                                isPending={false}/>
+            )
+
+    }
     render(){
     return(
         this.props.isDoubleSectioned?
@@ -13,16 +48,7 @@ class ParkingSection extends Component{
                 {this.props.parkingSpots.map( spot => {
                     if(spot.subSectionIndex == 1){
                     return(
-                    <ParkingSpot    key={spot.parkingSpotIndex} 
-                                    id={spot.parkingSpotIndex} 
-                                    isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
-                                    isOccupied={spot.isOccupied}
-                                    pendingSpotExists={this.props.pendingSpotExists}
-                                    setPendingSpotExists={this.props.setPendingSpotExists}
-                                    setModalVisibility={this.props.setModalVisibility}
-                                    parkingId = {this.props.parkingId}
-                                    sectionId = {this.props.sectionId}
-                                    spotScale={this.props.spotScale}/>
+                        this.createParkingSpot(spot)                                    
                     )
                     }}
                     )
@@ -33,16 +59,7 @@ class ParkingSection extends Component{
             {this.props.parkingSpots.map( spot => {
                 if(spot.subSectionIndex == 2){
                 return(
-                <ParkingSpot    key={spot.parkingSpotIndex} 
-                                id={spot.parkingSpotIndex} 
-                                isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
-                                isOccupied={spot.isOccupied}
-                                pendingSpotExists={this.props.pendingSpotExists}
-                                setPendingSpotExists={this.props.setPendingSpotExists}
-                                setModalVisibility={this.props.setModalVisibility}
-                                parkingId = {this.props.parkingId}
-                                sectionId = {this.props.sectionId}
-                                spotScale={this.props.spotScale}/>
+                    this.createParkingSpot(spot) 
                 )
                 }}
                 )
@@ -54,16 +71,7 @@ class ParkingSection extends Component{
         <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
             {this.props.parkingSpots.map( spot => {
                 return(
-                <ParkingSpot    key={spot.parkingSpotIndex} 
-                                id={spot.parkingSpotIndex} 
-                                isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
-                                isOccupied={spot.isOccupied}
-                                pendingSpotExists={this.props.pendingSpotExists}
-                                setPendingSpotExists={this.props.setPendingSpotExists}
-                                setModalVisibility={this.props.setModalVisibility}
-                                parkingId = {this.props.parkingId}
-                                sectionId = {this.props.sectionId}
-                                spotScale={this.props.spotScale}/>
+                    this.createParkingSpot(spot) 
                 )
                 }
                 )
@@ -79,7 +87,7 @@ const styles = StyleSheet.create({
     parkingVerticalSubSection : {
     },
     parkingVerticalSection:{
-        flex:1,
+        // flex:1,
         flexDirection: 'row',
         margin:10
     },
@@ -87,7 +95,7 @@ const styles = StyleSheet.create({
         flexDirection : 'row'
     },
     parkingHorizontalSection:{
-        flex:1,
+        // flex:1,
         flexDirection: 'column',
         margin:10
     }
