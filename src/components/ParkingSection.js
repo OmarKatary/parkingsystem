@@ -5,12 +5,13 @@ import ParkingSpot from './ParkingSpot'
 
 class ParkingSection extends Component{       
     
-    createParkingSpot= (spot) =>{
+    createParkingSpot= (spot, spotId) =>{
 
-        if(spot.parkingSpotIndex === this.props.requestedSpotId && this.props.sectionId === this.props.requestedSectionId){
+        if(spotId === this.props.requestedSpotId && this.props.sectionId === this.props.requestedSectionId){
+            console.log("this.props.requestedSpotId", this.props.requestedSpotId)
             return(
-                <ParkingSpot    key={spot.parkingSpotIndex} 
-                                id={spot.parkingSpotIndex} 
+                <ParkingSpot    key={spotId} 
+                                id={spotId} 
                                 isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
                                 isOccupied={spot.isOccupied}
                                 pendingSpotExists={this.props.pendingSpotExists}
@@ -25,8 +26,8 @@ class ParkingSection extends Component{
             )}
         else
             return(
-                <ParkingSpot    key={spot.parkingSpotIndex} 
-                                id={spot.parkingSpotIndex} 
+                <ParkingSpot    key={spotId} 
+                                id={spotId} 
                                 isParkingSpotHorizontal={this.props.isParkingSpotHorizontal} 
                                 isOccupied={spot.isOccupied}
                                 pendingSpotExists={this.props.pendingSpotExists}
@@ -45,10 +46,10 @@ class ParkingSection extends Component{
         this.props.isDoubleSectioned?
         <View key = {this.props.key} style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSection:styles.parkingVerticalSection}>
             <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
-                {this.props.parkingSpots.map( spot => {
+                {this.props.parkingSpots.map( (spot,index) => {
                     if(spot.subSectionIndex == 1){
                     return(
-                        this.createParkingSpot(spot)                                    
+                        this.createParkingSpot(spot,index)                                    
                     )
                     }}
                     )
@@ -56,10 +57,10 @@ class ParkingSection extends Component{
             </View> 
 
             <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
-            {this.props.parkingSpots.map( spot => {
+            {this.props.parkingSpots.map( (spot,index) => {
                 if(spot.subSectionIndex == 2){
                 return(
-                    this.createParkingSpot(spot) 
+                    this.createParkingSpot(spot,index) 
                 )
                 }}
                 )
@@ -69,9 +70,9 @@ class ParkingSection extends Component{
         :
         <View key = {this.props.key} style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSection:styles.parkingVerticalSection}>
         <View style={this.props.isParkingSectionHorizontal? styles.parkingHorizontalSubSection:styles.parkingVerticalSubSection}>
-            {this.props.parkingSpots.map( spot => {
+            {this.props.parkingSpots.map( (spot,index) => {
                 return(
-                    this.createParkingSpot(spot) 
+                    this.createParkingSpot(spot,index) 
                 )
                 }
                 )
