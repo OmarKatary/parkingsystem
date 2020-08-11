@@ -15,20 +15,22 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         right: 0,
-        width: 80,
-        height: 80,
-        backgroundColor: '#ffc34d',
-        borderRadius: 80/2,
+        width: 60,
+        height: 60,
+        backgroundColor: '#05526c',
+        // borderWidth: 2,
+        borderRadius: 60/2,
         margin: 20,
         justifyContent: 'flex-end',
-        shadowColor:'#ffc34d'
+        shadowColor:'#05526c'
         
     },
     number:{
         flex:1,
         textAlignVertical: 'center',
         textAlign: 'center',
-        fontSize:45,
+        fontSize:27,
+        color: '#ffffff'
     }
 })
 

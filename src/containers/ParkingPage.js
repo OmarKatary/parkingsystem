@@ -48,7 +48,7 @@ class ParkingPage extends Component{
         setTimeout(()=>{ 
             this.setState({reserveApproved:false,
                           pendingSpotExists:false})
-        },10000)
+        },90000)
         
     }
     reserveConfirmationNoButton = () => {
@@ -82,11 +82,12 @@ class ParkingPage extends Component{
                     <View style={[styles.timer,]}>
                         <CountdownCircleTimer       
                             isPlaying
-                            size = {40}
+                            size = {47}
                             strokeWidth={8}
-                            duration={10}
-                            // colors={[['#004777', 0.33], ['#F7B801', 0.33], ['#A30000']]}
-                            colors={[['#ffc34d']]}>
+                            duration={90}
+                            colors={[['#004777', 0.33], ['#F7B801', 0.33], ['#A30000']]}
+                            // colors={[['#ffc34d']]}
+                            >
                                 {({ remainingTime, animatedColor }) => (
                                     <Animated.Text style={{ color: animatedColor }}>
                                     {remainingTime}
@@ -96,7 +97,7 @@ class ParkingPage extends Component{
                     :
                     <Animated.View       style={[styles.animatedView,
                                                 { opacity: this.state.fadeTextValue }]}>
-                        <TextPopUp>Please choose a parking spot to be reserved for the following 10 seconds.</TextPopUp>
+                        <TextPopUp>Choose a parking spot.</TextPopUp>
                     </Animated.View>
                      }
                     <ParkingLot setModalVisibility={this.setModalVisibility} 

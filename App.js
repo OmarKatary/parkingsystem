@@ -17,8 +17,10 @@ import configureStore from './src/reducers/index'
 
 class App extends Component{
 
+  
   render(){
     const store = configureStore()
+    console.disableYellowBox = true
     return (
       <Provider store={store}>
         <MainPage/>

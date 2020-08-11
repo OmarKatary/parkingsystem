@@ -13,11 +13,12 @@ class TextPopUp extends Component{
 const styles = StyleSheet.create({
     popUp:{
         position: 'absolute',
-        top: 20,
-        left: '10%',
-        width: '80%',
-        backgroundColor: '#f1f1f1aa',
-        borderRadius:10,
+        top: 0,
+        left: '0%',
+        height: 40,
+        width: '100%',
+        backgroundColor: '#f1f1f1',
+        borderRadius:0,
           
     },
     text:{

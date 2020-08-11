@@ -268,19 +268,16 @@ class ParkingLot extends Component{
 
 const styles = StyleSheet.create({
 
-    parkingSection:{
-        // margin:20,        
-    },
+    
     parkingLot : {
-        //flex:1,
         flexDirection: 'row',
         justifyContent:'center',
         width : '100%',
         height : '100%',
-        // backgroundColor:'#f1f111',
         paddingHorizontal:20,
-        paddingTop: 80,
+        paddingTop: 60,
         paddingBottom: 20,
+        // backgroundColor:'#ffffff'
     }
   })
 

@@ -8,7 +8,6 @@ class ParkingSection extends Component{
     createParkingSpot= (spot, spotId) =>{
 
         if(spotId === this.props.requestedSpotId && this.props.sectionId === this.props.requestedSectionId){
-            console.log("this.props.requestedSpotId", this.props.requestedSpotId)
             return(
                 <ParkingSpot    key={spotId} 
                                 id={spotId} 
@@ -21,7 +20,8 @@ class ParkingSection extends Component{
                                 sectionId={this.props.sectionId}
                                 spotScale={this.props.spotScale}
                                 getRequestedSpot={this.props.getRequestedSpot}
-                                isPending={this.props.reserveApproved}/>
+                                isPending={this.props.reserveApproved}
+                                subSectionIndex={spot.subSectionIndex}/>
                                 
             )}
         else
@@ -37,7 +37,8 @@ class ParkingSection extends Component{
                                 sectionId={this.props.sectionId}
                                 spotScale={this.props.spotScale}
                                 getRequestedSpot={this.props.getRequestedSpot}
-                                isPending={false}/>
+                                isPending={false}
+                                subSectionIndex={spot.subSectionIndex}/>
             )
 
     }
@@ -90,7 +91,11 @@ const styles = StyleSheet.create({
     parkingVerticalSection:{
         // flex:1,
         flexDirection: 'row',
-        margin:10
+        margin:20,
+        borderTopWidth:2,
+        borderBottomWidth:2,
+        borderTopColor: 'black', 
+        borderBottomColor: 'black',     
     },
     parkingHorizontalSubSection : {
         flexDirection : 'row'
@@ -98,7 +103,11 @@ const styles = StyleSheet.create({
     parkingHorizontalSection:{
         // flex:1,
         flexDirection: 'column',
-        margin:10
+        margin:20,
+        borderLeftWidth:2,
+        borderRightWidth:2,
+        borderLeftColor: 'black', 
+        borderRightColor: 'black',         
     }
   })
 

@@ -1,27 +1,12 @@
 import React, {Component} from 'react';
-import { StyleSheet, View,Text,TouchableOpacity } from 'react-native';
+import { StyleSheet, View,Image,TouchableOpacity } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import {connect} from 'react-redux'
 import * as actions from '../actions'
 
 
 class ParkingSpot extends Component{ 
-    // state = {setPending:false}
 
-    // chooseParkingSpot = (parkingId, sectionId, spotId) =>{
-    //     if(!this.props.pendingSpotExists){
-    //         this.props.setPendingSpotExists(true)
-    //         // this.setState({setPending:true})
-    //         this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: true})
-
-    //         setTimeout(()=>{ 
-    //                         //  this.setState({setPending:false})
-    //                          this.props.setPendingSpotExists(false)
-    //                          this.props.reserveParkingSpotActionCreator({parkingId, sectionId, spotId, isPending: false})
-    //                         }, 10000)
-            
-    //     }
-    // }
     render(){
         const width = 2*this.props.spotScale
         const height = this.props.spotScale
@@ -30,21 +15,27 @@ class ParkingSpot extends Component{
             <View>
             <TouchableOpacity
                 disabled={this.props.isOccupied||this.props.pendingSpotExists}
-                style =  { [this.props.isPending? [styles.pendingParkingSpot, {borderRadius: 0.2*height}]:(this.props.isOccupied? [styles.occupiedParkingSpot, {borderRadius: 0.2*height}] : [styles.emptyParkingSpot, {borderRadius: 0.2*height}]), 
-                            this.props.isParkingSpotHorizontal? {width:width, height:height}: {width:height, height:width}]}
+                style =  { [this.props.isPending? [styles.pendingParkingSpot, {borderRadius: 0*0.2*height}]:(this.props.isOccupied? [styles.occupiedParkingSpot, {borderRadius: 0*0.2*height}] : [styles.emptyParkingSpot, {borderRadius: 0*0.2*height}]), 
+                            this.props.isParkingSpotHorizontal? [styles.horizontalParkingSpot, {width:width, height:height}]: [styles.verticalParkingSpot, {width:height, height:width}],
+                            this.props.subSectionIndex==2? (this.props.isParkingSpotHorizontal? styles.doubleSectionVertical : styles.doubleSectionHorizontal): null]}
                 onPress={() => {
                                     this.props.getRequestedSpot(this.props.id,this.props.sectionId)
-                                    
-                                // this.chooseParkingSpot(this.props.parkingId, this.props.sectionId, this.props.id)
-                                // this.props.setModalVisibility(true)
+
                                 }}>
                 <View style={this.props.isParkingSpotHorizontal? styles.horizontalIconView: styles.verticalIconView}> 
                     {this.props.isOccupied?
-                    <FontAwesome5   style={this.props.isParkingSpotHorizontal? styles.horizontalIcon: styles.verticalIcon}
-                                    name={"car-side"} 
-                                    size={0.8*height}
-                                    color={"#1a1a1a"}
-                                    />:null}
+                    // <FontAwesome5   style={this.props.isParkingSpotHorizontal? styles.horizontalIcon: styles.verticalIcon}
+                    //                 name={"car-side"} 
+                    //                 size={0.8*height}
+                    //                 color={"#1a1a1a"}
+                    //                 />:null}
+                    this.props.isParkingSpotHorizontal?
+                    <Image   style={styles.image}
+                        source={require('../helper/car2horizontal.png')}
+                        />:
+                    <Image   style={styles.image}
+                        source={require('../helper/car2.png')}
+                        />:null}
                 </View>
             </TouchableOpacity>
             </View>
@@ -55,37 +46,39 @@ class ParkingSpot extends Component{
 
 const styles = StyleSheet.create({
     horizontalParkingSpot :{
-        width: 58,
-        height: 29
+        borderTopWidth:2,
+        borderBottomWidth:2,
+        borderTopColor: 'black', 
+        borderBottomColor: 'black',
+        
     },
     verticalParkingSpot :{
-        width: 29,
-        height: 58,
+        borderLeftWidth:2,
+        borderRightWidth:2,
+        borderLeftColor: 'black', 
+        borderRightColor: 'black',
     },
-    occupiedParkingSpot : {
-        backgroundColor: '#b30000',
-        borderWidth: 1,
-        borderColor: "white",
-        // borderRadius: 8,
+    doubleSectionVertical:{
+        borderLeftWidth:4,
+        borderLeftColor: 'black',
+    },
+    doubleSectionHorizontal:{
+        borderTopWidth:4,
+        borderTopColor: 'black', 
 
     },
+    occupiedParkingSpot : {
+    },
     emptyParkingSpot: {
-        backgroundColor: '#009933',
-        borderWidth: 1,
-        borderColor: "white",
-        // borderRadius: 8,
     },
     pendingParkingSpot: {
-        backgroundColor: 'yellow',
-        borderWidth: 1,
-        borderColor: "white",
-        // borderRadius: 8,
+        backgroundColor: '#BAB4B4',
     },
-    verticalIcon:{
-        transform: [ {rotate: '90deg'}]
-    },
-    horizontalIcon:{
-        transform: [{rotate: '0deg'}]
+    image:{
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'contain',
     },
     verticalIconView: {
         flex:1,

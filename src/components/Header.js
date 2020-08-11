@@ -8,7 +8,7 @@ const Header = (props)=>{
             {props.backButton?
             <TouchableOpacity   onPress={ e => { props.backButtonHandler(false)}}
                                 style={{flex:1}}>
-                <Text style={{fontSize:12, padding:8}}> {"BACK"}</Text>
+                <Text style={{fontSize:12, margin:8, color: '#ffffff' }}> {"BACK"}</Text>
             </TouchableOpacity>:<View style={{flex:1}}></View>}
             <Text style={styles.headerText}>{" "+props.title}</Text>
             <View style={{flex:1}}></View>
@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
     headerView:{
         // flex:1,
         flexDirection:'row',
-        height:80,
+        height:60,
         width:'100%',
-        backgroundColor:'#ffc34d',
+        backgroundColor:'#05526c',
+        // backgroundColor:'#136786',
         paddingTop: 0,
         justifyContent:"space-between",
         alignItems:"center",
@@ -34,7 +35,9 @@ const styles = StyleSheet.create({
     headerText:{
         fontSize:25,
         flex:3,
-        textAlign:'center'
+        textAlign:'center',
+        color: '#ffffff'
+        
     },
     iconStyle:{
 
