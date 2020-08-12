@@ -21,7 +21,8 @@ class ParkingSection extends Component{
                                 spotScale={this.props.spotScale}
                                 getRequestedSpot={this.props.getRequestedSpot}
                                 isPending={this.props.reserveApproved}
-                                subSectionIndex={spot.subSectionIndex}/>
+                                subSectionIndex={spot.subSectionIndex}
+                                isParkingSectionHorizontal={this.props.isParkingSectionHorizontal} />
                                 
             )}
         else
@@ -38,7 +39,8 @@ class ParkingSection extends Component{
                                 spotScale={this.props.spotScale}
                                 getRequestedSpot={this.props.getRequestedSpot}
                                 isPending={false}
-                                subSectionIndex={spot.subSectionIndex}/>
+                                subSectionIndex={spot.subSectionIndex}
+                                isParkingSectionHorizontal={this.props.isParkingSectionHorizontal}/>
             )
 
     }

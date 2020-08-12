@@ -16,7 +16,8 @@ class ParkingSpot extends Component{
             <TouchableOpacity
                 disabled={this.props.isOccupied||this.props.pendingSpotExists}
                 style =  { [this.props.isPending? [styles.pendingParkingSpot, {borderRadius: 0*0.2*height}]:(this.props.isOccupied? [styles.occupiedParkingSpot, {borderRadius: 0*0.2*height}] : [styles.emptyParkingSpot, {borderRadius: 0*0.2*height}]), 
-                            this.props.isParkingSpotHorizontal? [styles.horizontalParkingSpot, {width:width, height:height}]: [styles.verticalParkingSpot, {width:height, height:width}],
+                            this.props.isParkingSpotHorizontal?{width:width, height:height}: {width:height, height:width} ,
+                            this.props.isParkingSectionHorizontal? [styles.horizontalParkingSection]: [styles.verticalParkingSection],
                             this.props.subSectionIndex==2? (this.props.isParkingSpotHorizontal? styles.doubleSectionVertical : styles.doubleSectionHorizontal): null]}
                 onPress={() => {
                                     this.props.getRequestedSpot(this.props.id,this.props.sectionId)
@@ -45,14 +46,14 @@ class ParkingSpot extends Component{
 }
 
 const styles = StyleSheet.create({
-    horizontalParkingSpot :{
+    verticalParkingSection :{
         borderTopWidth:2,
         borderBottomWidth:2,
         borderTopColor: 'black', 
         borderBottomColor: 'black',
         
     },
-    verticalParkingSpot :{
+    horizontalParkingSection :{
         borderLeftWidth:2,
         borderRightWidth:2,
         borderLeftColor: 'black', 
